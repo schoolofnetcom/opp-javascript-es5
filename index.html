@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<p>OOP Javascript</p>
+	<script>
+		function Person(_name, _age, _height) {
+			var name   = _name
+			var age    = _age
+			var height = _height
+			
+			function privateFunc() {
+				console.log('private func')
+			}
+
+			this.initialize = function() {
+				console.log("init function")	
+			}
+
+			this.sayHello = function(name) {
+				console.log('Hello ' + name)
+			}
+
+			this.hello = function hello(name) {
+				console.log('Hello ' + name)
+			}
+
+			this.getName = function getName() {
+				return name
+			}
+
+			this.setName = function setName(_name) {
+				name = _name
+			}
+
+			this.getAge = function() {
+				return age
+			}
+
+			this.setAge = function(_age) {
+				age = _age
+			}
+
+			this.getHeight = function getHeight() {
+				return height 
+			}
+
+			this.setHeight = function setHeight(_height) {
+				height = _height
+			}
+		}
+
+		Person.myStaticFunc = function() {
+			console.log('First static method')
+		}
+		
+		Person.static_attr = 'my_first_attr_static'
+		
+		// Person.prototype.myProtoFunc = function() {
+		// 	console.log('First prototype function')
+		// }
+
+		Person.prototype.happyBirthday = function() {
+			return this.setAge(this.getAge() + 1)
+		}
+
+		function Employee(_name, _age, _height) {
+			var salary
+
+			Person.call(this, _name, _age, _height)
+
+			this.getSalary = function() {
+				return salary
+			}
+
+			this.setSalary = function(_salary) {
+				salary = _salary
+			}
+		}
+
+		Employee.prototype = Object.create(Person.prototype)
+
+		var victor = new Person('Victor', 22, 1.70)
+		console.log(victor.getName(), victor.getAge())
+		victor.happyBirthday()
+		console.log(victor.getName(), victor.getAge())
+
+		// var leonan = new Person('Leonan', 23, 1.76)
+		var leonan = new Employee('Leonan', 23, 1.76)
+		console.log(leonan.getName(), leonan.getAge())
+		leonan.happyBirthday = function happyBirthday() {
+			return this.setAge(this.getAge() + 2)
+		}
+		leonan.happyBirthday()
+		console.log(leonan.getName(), leonan.getAge())
+
+
+		// console.log(Person.static_attr)
+		// console.log(new Person())
+		// leonan.myStaticFunc()
+		// leonan.myProtoFunc()
+		// leonan.initialize()
+		// leonan.sayHello(leonan.getName())
+		// console.log(leonan.privateFunc())
+		// leonan.setName('Leonan')
+		// leonan.setAge(23)
+		// leonan.setHeight(1.76)
+		// leonan.sayHello(leonan.getName())
+		// leonan.hello(leonan.getName())
+		// console.log(leonan.name)
+		// Person.static_method()
+
+		// var victor = new Person()
+		// victor.name = 'Victor'
+		// victor.age  = 23
+		// victor.height = 1.76 
+		// victor.sayHello(victor.name)		
+
+		// console.log(victor)
+
+	</script>
+</body>
+</html>
